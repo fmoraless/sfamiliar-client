@@ -1,4 +1,4 @@
-<template>
+<!--<template>
   <div class="flex flex-col mt-8">
     <div class="overflow-x-auto">
       <div class="flex justify-between py-3 pl-2">
@@ -124,11 +124,179 @@
       </div>
     </div>
   </div>
+</template>-->
+<template>
+  <div class="q-pa-md">
+    <q-toggle v-model="loading" label="Loading state" class="q-mb-md" />
+    <q-table
+      title="Pacientes"
+      :rows="rows"
+      :columns="columns"
+      color="primary"
+      row-key="name"
+      :loading="loading"
+    >
+      <template v-slot:loading>
+        <q-inner-loading showing color="primary" />
+      </template>
+    </q-table>
+  </div>
 </template>
 <script>
-import axios from "axios";
+//import axios from "axios";
+
+import { ref } from "vue";
+
+const columns = [
+  {
+    name: "name",
+    required: true,
+    label: "Rut",
+    align: "left",
+    field: (row) => row.name,
+    format: (val) => `${val}`,
+    sortable: true,
+  },
+  {
+    name: "calories",
+    align: "center",
+    label: "Nombres",
+    field: "calories",
+    sortable: true,
+  },
+  { name: "fat", label: "Fat (g)", field: "fat", sortable: true },
+  { name: "carbs", label: "Carbs (g)", field: "carbs" },
+  { name: "protein", label: "Protein (g)", field: "protein" },
+  { name: "sodium", label: "Sodium (mg)", field: "sodium" },
+  {
+    name: "calcium",
+    label: "Calcium (%)",
+    field: "calcium",
+    sortable: true,
+    sort: (a, b) => parseInt(a, 10) - parseInt(b, 10),
+  },
+  {
+    name: "iron",
+    label: "Iron (%)",
+    field: "iron",
+    sortable: true,
+    sort: (a, b) => parseInt(a, 10) - parseInt(b, 10),
+  },
+];
+
+const rows = [
+  {
+    name: "19200398-7",
+    calories: "JUAN MIGUEL TORO MENDEZ",
+    fat: 6.0,
+    carbs: 24,
+    protein: 4.0,
+    sodium: 87,
+    calcium: "14%",
+    iron: "1%",
+  },
+  {
+    name: "16990879-K",
+    calories: "MATIAS FERREIRA GONZALEZ",
+    fat: 9.0,
+    carbs: 37,
+    protein: 4.3,
+    sodium: 129,
+    calcium: "8%",
+    iron: "1%",
+  },
+  {
+    name: "21908567-K",
+    calories: "CAROLINA GONZALEZ GONZALEZ",
+    fat: 16.0,
+    carbs: 23,
+    protein: 6.0,
+    sodium: 337,
+    calcium: "6%",
+    iron: "7%",
+  },
+  {
+    name: "55908123-2",
+    calories: "ARTURO GOYCOOLEA SHARP",
+    fat: 3.7,
+    carbs: 67,
+    protein: 4.3,
+    sodium: 413,
+    calcium: "3%",
+    iron: "8%",
+  },
+  {
+    name: "23562779-8",
+    calories: "MARCELO CIFUENTES",
+    fat: 16.0,
+    carbs: 49,
+    protein: 3.9,
+    sodium: 327,
+    calcium: "7%",
+    iron: "16%",
+  },
+  {
+    name: "18980672-0",
+    calories: "MARIBEL PUEBLA",
+    fat: 0.0,
+    carbs: 94,
+    protein: 0.0,
+    sodium: 50,
+    calcium: "0%",
+    iron: "0%",
+  },
+  {
+    name: "18980672-0",
+    calories: "JOAQUIN CORREA",
+    fat: 0.2,
+    carbs: 98,
+    protein: 0,
+    sodium: 38,
+    calcium: "0%",
+    iron: "2%",
+  },
+  {
+    name: "18980672-0",
+    calories: "EDUARDO MONREAL",
+    fat: 3.2,
+    carbs: 87,
+    protein: 6.5,
+    sodium: 562,
+    calcium: "0%",
+    iron: "45%",
+  },
+  {
+    name: "8945688-2",
+    calories: "ROJELIO ROJAS",
+    fat: 25.0,
+    carbs: 51,
+    protein: 4.9,
+    sodium: 326,
+    calcium: "2%",
+    iron: "22%",
+  },
+  {
+    name: "26518794-5",
+    calories: "PAMELA RIOS",
+    fat: 26.0,
+    carbs: 65,
+    protein: 7,
+    sodium: 54,
+    calcium: "12%",
+    iron: "6%",
+  },
+];
 
 export default {
+  setup() {
+    return {
+      loading: ref(false),
+      columns,
+      rows,
+    };
+  },
+};
+/*export default {
   name: "PatientsView",
   data() {
     return {
@@ -163,5 +331,5 @@ export default {
     this.patients = response.data.data;
     console.log(this.patients, "patients");
   },
-};
+};*/
 </script>
