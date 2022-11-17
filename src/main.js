@@ -13,6 +13,8 @@ import { faEdit } from "@fortawesome/free-solid-svg-icons";
 import App from "./App.vue";
 import "@/assets/tailwind.css";
 import router from "@/router";
+import { Quasar } from "quasar";
+import quasarUserOptions from "./quasar-user-options";
 
 library.add(
   faUsers,
@@ -26,6 +28,7 @@ library.add(
 );
 
 createApp(App)
+  .use(Quasar, quasarUserOptions)
   .use(router)
   .component("font-awesome-icon", FontAwesomeIcon)
   .mount("#app");
