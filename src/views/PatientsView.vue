@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-col mt-16">
+  <div class="flex flex-col mt-8">
     <div class="overflow-x-auto">
       <div class="flex justify-between py-3 pl-2">
         <h1 class="text-2xl font-bold">Pacientes view</h1>
